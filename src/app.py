@@ -33,6 +33,14 @@ def main():
     parsed_queries = qp.get_queries()
     for query in parsed_queries:
         st.write(query)
+        
+    def load_file_from_github(url):
+            response = requests.get(url)
+            if response.status_code == 200:
+                return response.text
+            else:
+                return None        
+            
     github_url = "https://raw.githubusercontent.com/khikisb/BM25_UAS_TKI/main/src/corpus.txt"
     file_content = load_file_from_github(github_url)
 
