@@ -30,9 +30,11 @@ def run_query(queries, corpus):
 def main():
     st.title("Query Processor")
 
-    # Inisialisasi QueryParser dengan file queries.txt
-    queries = st.write()
-    qp = QueryParser(queries)
+    user_input = st.text_area("Enter queries (separated by newlines):")
+    queries = user_input.split('\n')
+    qp = QueryParser()
+    qp.parse(queries)
+
     # Parsing queries dari file queries.txt
     qp.parse()
     # Mendapatkan daftar queries
