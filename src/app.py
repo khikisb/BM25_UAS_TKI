@@ -1,25 +1,19 @@
 import streamlit as st
-from parse import QueryParser, CorpusParser
+from parse import CorpusParser
 from query import QueryProcessor
 import operator
 
 def run_query(query):
-    # Inisialisasi QueryParser dengan file queries.txt
-    qp = QueryParser(filename='../text/queries.txt')
     # Inisialisasi CorpusParser dengan file corpus.txt
     cp = CorpusParser(filename='../text/corpus.txt')
 
-    # Parsing queries dari file queries.txt
-    qp.parse()
-    # Mendapatkan daftar queries
-    queries = qp.get_queries()
     # Parsing corpus dari file corpus.txt
     cp.parse()
     # Mendapatkan daftar dokumen dalam corpus
     corpus = cp.get_corpus()
 
-    # Inisialisasi QueryProcessor dengan queries dan corpus
-    proc = QueryProcessor(queries, corpus)
+    # Inisialisasi QueryProcessor dengan query dan corpus
+    proc = QueryProcessor([query], corpus)  # Menggunakan query sebagai daftar queries
 
     # Menjalankan proses pencarian query
     results = proc.run()
