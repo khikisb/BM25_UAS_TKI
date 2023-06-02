@@ -2,6 +2,7 @@ import streamlit as st
 from parse import QueryParser, CorpusParser
 from query import QueryProcessor
 import operator
+import requests
 
 class QueryParser:
     def __init__(self):
