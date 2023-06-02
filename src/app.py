@@ -32,7 +32,6 @@ def main():
     parsed_queries = qp.get_queries()
     for query in parsed_queries:
         st.write(query)
-    github_url =
     cp = CorpusParser("corpus.txt")    
    
 
