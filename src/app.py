@@ -38,7 +38,7 @@ def main():
     queries = qp.get_queries()
 
     # Inisialisasi CorpusParser dengan file corpus.txt
-    cp = CorpusParser(filename='../text/corpus.txt')
+    cp = CorpusParser(st.write(queries))
     # Parsing corpus dari file corpus.txt
     cp.parse()
     # Mendapatkan daftar dokumen dalam corpus
@@ -46,13 +46,6 @@ def main():
 
     # Menampilkan daftar queries
     st.write("Daftar Queries:")
-    for query in queries:
-        st.write(query)
-
-    # Menampilkan daftar dokumen dalam corpus
-    st.write("Daftar Dokumen dalam Corpus:")
-    for doc in corpus:
-        st.write(doc)
 
     # Menjalankan proses pencarian query jika tombol "Run Query" ditekan
     if st.button("Run Query"):
