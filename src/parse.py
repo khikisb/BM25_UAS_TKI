@@ -37,7 +37,7 @@ class QueryParser:
 
     def parse(self):
         # Metode parse() membaca file pertanyaan dan memparsing teksnya
-        with open(self.filename) as f:
+        with open(self.filename encoding='utf-8') as f:
             lines = ''.join(f.readlines())
         self.queries = [x.rstrip().split() for x in lines.split('\n')[:-1]]  # Memisahkan teks menjadi baris dan membagi kata-kata di setiap baris menjadi elemen-elemen dalam daftar
         # .rstrip() digunakan untuk menghapus karakter baris baru (\n) di akhir setiap baris
