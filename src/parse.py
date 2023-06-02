@@ -27,7 +27,7 @@ class CorpusParser:
         # Metode get_corpus() mengembalikan kamus yang berisi korpus yang telah diparsing
         return self.corpus
 
-
+    
 class QueryParser:
     def __init__(self):
         self.queries = []
@@ -43,11 +43,11 @@ if __name__ == '__main__':
     qp = QueryParser()
 
     # Accept user input for queries
-    user_input = input("Enter queries (separated by newlines):\n")
-    
+    user_input = st.text_area("Enter queries (separated by newlines):")
+
     # Parse the user input
     qp.parse(user_input)
 
     # Retrieve and print the queries
-    print(qp.get_queries())
+    st.write(qp.get_queries())
 
