@@ -32,7 +32,8 @@ def main():
     parsed_queries = qp.get_queries()
     for query in parsed_queries:
         st.write(query)
-    cp = CorpusParser(file_content = load_file_from_github(https://raw.githubusercontent.com/khikisb/BM25_UAS_TKI/main/src/corpus.txt))   
+    github_url = "https://raw.githubusercontent.com/khikisb/BM25_UAS_TKI/main/src/corpus.txt"
+    cp = CorpusParser(file_content = load_file_from_github(github_url))   
 
     # Parsing corpus dari file corpus.txt
     cp.parse()
