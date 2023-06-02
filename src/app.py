@@ -27,32 +27,35 @@ def run_query(queries, corpus):
 
         qid += 1  # Menaikkan ID query untuk query selanjutnya
 
-def main():
-    st.title("Query Processor")
+class QueryParser:
+    def __init__(self):
+        self.queries = []
 
-    user_input = st.text_area("Enter queries (separated by newlines):")
+    def parse(self, queries):
+        self.queries = [query.split() for query in queries]
+
+    def get_queries(self):
+        return self.queries
+
+
+def main():
+    st.title("Query Parser")
+    st.write("Enter queries (separated by newlines):")
+    
+    # Accept user input for queries
+    user_input = st.text_area("")
+
+    # Split the user input into a list of queries
     queries = user_input.split('\n')
+
+    # Initialize and parse queries using QueryParser
     qp = QueryParser()
     qp.parse(queries)
 
-    # Parsing queries dari file queries.txt
-    qp.parse()
-    # Mendapatkan daftar queries
-    queries = qp.get_queries()
-
-    # Inisialisasi CorpusParser dengan file corpus.txt
-    cp = CorpusParser(filename='../text/corpus.txt')
-    # Parsing corpus dari file corpus.txt
-    cp.parse()
-    # Mendapatkan daftar dokumen dalam corpus
-    corpus = cp.get_corpus()
-
-    # Menampilkan daftar queries
-    st.write("Daftar Queries:")
-
-    # Menjalankan proses pencarian query jika tombol "Run Query" ditekan
-    if st.button("Run Query"):
-        run_query(queries, corpus)
+    # Retrieve and display the parsed queries
+    parsed_queries = qp.get_queries()
+    for query in parsed_queries:
+        st.write(query)
 
 if __name__ == '__main__':
     main()
