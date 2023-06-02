@@ -3,17 +3,9 @@ from parse import QueryParser, CorpusParser
 from query import QueryProcessor
 import operator
 
-def run_query(query, corpus_text):
-    # Inisialisasi CorpusParser dengan teks korpus
-    cp = CorpusParser(corpus_text)
-
-    # Parsing korpus dari teks korpus
-    cp.parse()
-    # Mendapatkan daftar dokumen dalam korpus
-    corpus = cp.get_corpus()
-
-    # Inisialisasi QueryProcessor dengan query dan korpus
-    proc = QueryProcessor([query], corpus)  # Menggunakan query sebagai daftar queries
+def run_query(queries, corpus):
+    # Inisialisasi QueryProcessor dengan queries dan corpus
+    proc = QueryProcessor(queries, corpus)
 
     # Menjalankan proses pencarian query
     results = proc.run()
@@ -38,12 +30,33 @@ def run_query(query, corpus_text):
 def main():
     st.title("Query Processor")
 
-    query = st.text_input("Masukkan query:")
-    corpus_file = st.file_uploader("Unggah file korpus (corpus.txt)", type="txt")
+    # Inisialisasi QueryParser dengan file queries.txt
+    qp = QueryParser(filename='../text/queries.txt')
+    # Parsing queries dari file queries.txt
+    qp.parse()
+    # Mendapatkan daftar queries
+    queries = qp.get_queries()
 
-    if query and corpus_file is not None:
-        corpus_text = corpus_file.read().decode("utf-8")  # Membaca teks korpus dari file yang diunggah
-        run_query(query, corpus_text)
+    # Inisialisasi CorpusParser dengan file corpus.txt
+    cp = CorpusParser(filename='../text/corpus.txt')
+    # Parsing corpus dari file corpus.txt
+    cp.parse()
+    # Mendapatkan daftar dokumen dalam corpus
+    corpus = cp.get_corpus()
+
+    # Menampilkan daftar queries
+    st.write("Daftar Queries:")
+    for query in queries:
+        st.write(query)
+
+    # Menampilkan daftar dokumen dalam corpus
+    st.write("Daftar Dokumen dalam Corpus:")
+    for doc in corpus:
+        st.write(doc)
+
+    # Menjalankan proses pencarian query jika tombol "Run Query" ditekan
+    if st.button("Run Query"):
+        run_query(queries, corpus)
 
 if __name__ == '__main__':
     main()
