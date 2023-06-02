@@ -31,14 +31,14 @@ def main():
     st.title("Query Processor")
 
     # Inisialisasi QueryParser dengan file queries.txt
-    qp = QueryParser(filename='../text/queries.txt')
+    qp = QueryParser(st.write(queries))
     # Parsing queries dari file queries.txt
     qp.parse()
     # Mendapatkan daftar queries
     queries = qp.get_queries()
 
     # Inisialisasi CorpusParser dengan file corpus.txt
-    cp = CorpusParser(st.write(queries))
+    cp = CorpusParser(filename='../text/corpus.txt')
     # Parsing corpus dari file corpus.txt
     cp.parse()
     # Mendapatkan daftar dokumen dalam corpus
