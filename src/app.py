@@ -32,7 +32,8 @@ def main():
     parsed_queries = qp.get_queries()
     for query in parsed_queries:
         st.write(query)
-        
+    
+    cp = CorpusParser(filename='../text/corpus.txt')    
     # Parsing corpus dari file corpus.txt
     cp.parse()
     # Mendapatkan daftar dokumen dalam corpus
