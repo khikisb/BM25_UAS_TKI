@@ -29,25 +29,25 @@ class CorpusParser:
 
 
 class QueryParser:
-    # Kelas QueryParser digunakan untuk memparsing file pertanyaan (query)
-
-    def __init__(self, filename):
-        self.filename = filename
+    def __init__(self):
         self.queries = []
 
-    def parse(self):
-        # Metode parse() membaca file pertanyaan dan memparsing teksnya
-        with open(self.filename, encoding='utf-8') as f:
-            lines = ''.join(f.readlines())
-        self.queries = [x.rstrip().split() for x in lines.split('\n')[:-1]]  # Memisahkan teks menjadi baris dan membagi kata-kata di setiap baris menjadi elemen-elemen dalam daftar
-        # .rstrip() digunakan untuk menghapus karakter baris baru (\n) di akhir setiap baris
+    def parse(self, text):
+        self.queries = [x.rstrip().split() for x in text.split('\n')[:-1]]
 
     def get_queries(self):
-        # Metode get_queries() mengembalikan daftar pertanyaan yang telah diparsing
         return self.queries
 
 
 if __name__ == '__main__':
-    # Jika kode ini dieksekusi sebagai program utama
-    qp = QueryParser('text/queries.txt')
+    qp = QueryParser()
+
+    # Accept user input for queries
+    user_input = input("Enter queries (separated by newlines):\n")
+    
+    # Parse the user input
+    qp.parse(user_input)
+
+    # Retrieve and print the queries
     print(qp.get_queries())
+
