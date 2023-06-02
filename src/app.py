@@ -31,8 +31,8 @@ def main():
     st.title("Query Processor")
 
     # Inisialisasi QueryParser dengan file queries.txt
-    queries = []
-    qp = QueryParser(st.write(queries))
+    queries = st.write()
+    qp = QueryParser(queries)
     # Parsing queries dari file queries.txt
     qp.parse()
     # Mendapatkan daftar queries
